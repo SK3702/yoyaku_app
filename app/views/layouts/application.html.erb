@@ -11,6 +11,48 @@
   </head>
 
   <body>
+    <header>
+      <div class="header-container">
+        <%= link_to "Potepan Share", root_path, class: "header-logo" %>
+        <nav class="header-nav">
+          <ul class="nav-items">
+            <% if user_signed_in? %>
+              <li class="header-user-icon nav-item">
+                <%= image_tag current_user.avatar.url, width: 40, height: 40, style: "object-fit: contain;", class: "header-user-icon-img" %>
+              </li>
+              <li class="nav-item">
+                <p class="header-user-name"><%= current_user.name %></p>
+              </li>
+              
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class: "header-sign-up-btn" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "header-login-btn btn" %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+      <div class="btn-down-menu">
+          <nav class="menu-nav">
+            <ul>
+              <li><%= link_to "施設の新規登録", new_room_path, class: "nav-list" %></li>
+              <li><%= link_to "予約済み一覧", reservations_path, class: "nav-list" %></li>
+              <li><%= link_to "登録済み一覧", rooms_own_path, class: "nav-list" %></li>
+              <li><%= link_to "アカウント設定", users_account_path, class: "nav-list" %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :get, class: "nav-list" %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
     <%= yield %>
   </body>
+
+  <footer>
+    <h1>Potepan Share</h1>
+  </footer>
 </html>

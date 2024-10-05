@@ -1,0 +1,28 @@
+<div class="account-wrapper">
+    <h2 class="account-header">設定</h2>
+    <div class="account-container">
+        <div class="side-nav">
+            <li><%= link_to "アカウント", users_account_path %></li>
+            <li><%= link_to "プロフィール", profile_path(current_user.id) %></li>
+        </div>
+
+        <div class="account-contents-container">
+            <div class="content-header-area">
+                <h2 class="content-header">プロフィール</h2>
+                <%= link_to "編集", edit_profile_path(@user.id), class:"edit-btn" %>
+            </div>
+            <div class="account-content">
+                <p class="content-label">アイコン画像</p>
+                <%= image_tag @user.avatar.url, width: 80, height: 80, style: "object-fit: contain;" %>
+            </div>
+            <div class="account-content">
+                <p class="content-label">名前</p>
+                <%= @user.name %>
+            </div>
+            <div class="account-content">
+                <p class="content-label">自己紹介</p>
+                <p class="content-intro"><%= @user.intro %></p>
+            </div>
+        </div>
+    </div>
+</div>

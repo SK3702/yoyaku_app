@@ -1,0 +1,44 @@
+<div class="account-wrapper">
+    <h2 class="account-header">設定</h2>
+    <div class="account-container">
+        <div class="side-nav">
+            <li><%= link_to "アカウント", users_account_path %></li>
+            <li><%= link_to "プロフィール", profile_path(current_user.id) %></li>
+        </div>
+
+        <div class="account-contents-container">
+            <% if flash[:error] %>
+                <%= flash[:error] %>
+            <% end %>
+            <div class="content-header-area">
+                <h2 class="content-header">プロフィール</h2>
+            </div>
+            <div class="account-edit-form">
+                <%= form_with model: @user, url: profile_path do |f| %>
+                    <div class="account-content">
+                        <%= f.label :avatar, class:"content-label" %>
+                        <% if @user.avatar? %>
+                            <%= image_tag @user.avatar.url, width: 100, height: 100, 
+                            style: "object-fit: contain;" %>
+                        <% else %>
+                            <%= image_tag ("default_avatar.png") %>
+                        <% end %>
+                        <%= f.file_field :avatar %>
+                    </div>
+                    <div class="account-content">
+                      <%= f.label :name, class:"content-label" %>
+                      <%= f.text_field :name, class:"account-content-form form" %>
+                    </div>
+                    <div class="account-content">
+                        <%= f.label :intro, class:"content-label" %>
+                        <%= f.text_area :intro, class:"intro-form account-content-form form" %>
+                    </div>
+                    <div class="account-edit-actions actions">
+                        <%= link_to "キャンセル", :back, class:"cancel-btn" %>
+                        <%= f.submit "保存", class:"submit-btn btn" %>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

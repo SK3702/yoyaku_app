@@ -1,0 +1,43 @@
+<div class="room-wrapper">
+    <div class="room-container">
+        <%= link_to "←戻る", :back, class:"back" %>
+
+        <%= render "shared/error", obj: @reservation %>
+        
+        <div class="room-content">
+            <div class="room-image-area"><%= image_tag @room.room_image.url, style: "object-fit: contain;", class:"room-show-image" %></div>
+            <div class="room-content-details">
+                <div class="room-content-top">
+                    <h3 class="room-name"><%= @room.room_name %></h3>
+                    <p class="price">¥<%= @room.price %>~</p>
+                </div>
+                <%= @room.address %>
+                <div>
+                    <p class="room-memo"><%= @room.memo%></p>
+                </div>
+                <div class="reservation-form">
+                    <%= form_with model: @reservation, url: reservations_confirm_path do |f| %>
+                        <%= f.hidden_field :room_id, value: @room.id %>
+                        <%= f.hidden_field :user_id, value: current_user.id %>
+                        <div class="reservation-form-content">
+                            <div class="field">
+                                <%= f.label :check_in, class: "label" %><br>
+                                <%= f.date_field :check_in, class: "form" %>
+                            </div>
+                            <div class="field">
+                                <%= f.label :check_out, class: "label" %><br>
+                                <%= f.date_field :check_out, class: "form" %>
+                            </div>
+                            <div class="field">
+                                <%= f.label :people, class: "label" %><br>
+                                <%= f.number_field :people, in:1..10, class: "form" %>
+                            </div>
+                        </div>
+                        <%= f.submit "予約する",  class:"submit-btn btn" %>
+                    <% end %>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

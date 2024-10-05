@@ -1,0 +1,55 @@
+<div class="firstview">
+    <div class="firstview-container">
+        <h1 class="firstview-title">
+        Potepan Shareで<br>
+        まだ体験したことのない<br>
+        旅をしよう
+        </h1>tt
+        
+
+        <div class="search-form">
+            <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+                <%= f.text_field :keyword, placeholder: "エリア名を入力", class:"form" %>
+                <%= f.submit "検索", class: "search-btn submit-btn btn" %>
+            <% end %>
+        </div>
+    </div>
+    
+
+    
+
+</div>
+
+<div class="area-search-area">
+    <h1>おすすめエリア</h1>
+    <div class="search-image-area">
+        <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+            <%= f.hidden_field :keyword, required: true, class:"form", value:"東京" %>
+            <%= button_tag type: :submit, class: "search-image" do %>
+                <%= image_tag "tokyo.jpg", style: "object-fit: contain;", class:"search-icon" %>
+                <p>📍東京</p>
+            <% end %>
+        <% end %>
+        <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+            <%= f.hidden_field :keyword, required: true, class:"form", value:"大阪" %>
+            <%= button_tag type: :submit, class: "search-image" do %>
+                <%= image_tag "osaka.jpg", class:"search-icon" %>
+                <p>📍大阪</p>
+            <% end %>
+        <% end %>
+        <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+            <%= f.hidden_field :keyword, required: true, class:"form", value:"京都" %>
+            <%= button_tag type: :submit, class: "search-image" do %>
+                <%= image_tag "kyoto.jpg", class:"search-icon" %>
+                <p>📍京都</p>
+            <% end %>
+        <% end %>
+        <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+            <%= f.hidden_field :keyword, required: true, class:"form", value:"札幌" %>
+            <%= button_tag type: :submit, class: "search-image" do %>
+                <%= image_tag "sapporo.jpg", class:"search-icon" %>
+                <p>📍札幌</p>
+            <% end %>
+        <% end %>
+    </div>
+</div>

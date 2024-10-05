@@ -1,0 +1,37 @@
+<div class="reservation-wrapper">
+    <div class="reservation-container">
+        <h2>予約済み一覧</h2>
+
+        <table>
+        <thead>
+            <tr>
+            <th>画像</th>
+            <th>施設名</th>
+            <th>紹介文</th>
+            <th>合計金額</th>
+            <th>チェックイン</th>
+            <th>チェックアウト</th>
+            <th>予約確定日時</th>
+            <th></th>
+            <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @reservations.each do |reservation| %>
+            <tr>
+                <td><%= image_tag reservation.room.room_image.url, width: 80, height: 80, style: "object-fit: cover;", class:"room-image" %></td>
+                <td><%= link_to reservation.room.room_name, room_path(reservation.room.id), class:"bluelink-btn" %></td>
+                <td><%= reservation.room.memo %></td>
+                <td><p class="room-own-nowrap">¥<%= (reservation.room.price * reservation.people * (reservation.check_out - reservation.check_in)).to_i %></p></td>
+                <td><p class="room-own-nowrap"><%= l reservation.check_in, format: :default %></p></td>
+                <td><p class="room-own-nowrap"><%= l reservation.check_out, format: :default %></p></td>
+                <td><%= l reservation.created_at, format: :long %></td>
+                <td><%= link_to "編集", edit_reservation_path(reservation.id), class:"edit-btn" %></td>
+                <td><%= link_to "削除", reservation, method: :delete, data: { confirm: "本当に削除しますか？" }, class:"delete-btn" %></td>
+            </tr>
+            <% end %>
+        </tbody>
+        </table>
+    </div>
+</div>
