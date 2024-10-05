@@ -1,0 +1,20 @@
+<div class="rooms-wrapper">
+    <div class="rooms-container">
+        <% @rooms.each do |room| %>
+            <div class="room-area">
+                <%= image_tag room.room_image.url, width: 190, height: 190, style: "object-fit: cover;", class:"room-image" %>
+                <div class="room-details-area">
+                    <div class="room-details">
+                        <h3 class="room-name"><%= room.room_name %></h3>
+                        <p class="address"><%= room.address %></p>
+                        <p class="room-memo"><%= room.memo %></p>
+                    </div>
+                    <div class="price-area">
+                        <p class="price">¥<%= room.price %>~</p>
+                        <%= link_to "詳細はこちら", room_path(room.id), class: "btn" %>
+                    </div>
+                </div>
+            </div>
+        <%end%>
+    </div>
+</div>

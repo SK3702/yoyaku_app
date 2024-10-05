@@ -1,0 +1,35 @@
+<div class="account-form-wrapper">
+  <div class="account-form-container">
+    <h2>新規登録</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="account-form-content">
+        <div class="field">
+          <%= f.label :name, class: "label" %><br>
+          <%= f.text_field :name, autofocus: true, class: "form" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :email, class: "label" %><br />
+          <%= f.email_field :email, autocomplete: "email", class: "form" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, class: "label" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, class: "label" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "新しいアカウントを作成", class: "submit-btn btn" %>
+          <%= link_to "アカウントをお持ちの方はこちら", new_user_session_path %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

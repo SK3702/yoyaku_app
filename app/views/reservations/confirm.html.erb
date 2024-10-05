@@ -1,0 +1,45 @@
+<div class="confirm-wrapper">
+    <div class="confirm-container">
+        <%= render "shared/error", obj: @reservation %>
+        <h2>予約内容の確認</h2>
+        <%= form_with model: @reservation do |f| %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :check_in %>
+        <%= f.hidden_field :check_out %>
+        <%= f.hidden_field :people %>
+        <table>
+            <tbody>
+                <tr>
+                    <td><%= f.label :check_in %></td>
+                    <td><%= @reservation.check_in %></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :check_out %></td>
+                    <td><%= @reservation.check_out %></td>
+                </tr>
+                <tr>
+                    <td>日数</td>
+                    <td><%= @days %>日</td>
+                </tr>
+                <tr>
+                    <td><%= f.label :people %></td>
+                    <td><%= @reservation.people %>人</td>
+                </tr>
+                <tr>
+                    <td>お支払い金額</td>
+                    <td><%= @total_price %>円</td>
+                </tr>
+                <tr>
+                    <td colspan="2">上記内容で正しければ「確定」ボタンを押してください。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <%= f.submit"予約を確定", class:"confirm-btn submit-btn btn" %>
+
+    <% end %>
+    </div>
+    
+</div>
+
